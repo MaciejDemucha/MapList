@@ -58,7 +58,10 @@ public class MapConsoleApp {
                 switch (choice) {
                     case 1 -> maps.displayMaps();       //Wyświetlenie listy map
                     case 2 -> maps.addMap();            //Dodanie mapy do listy
-                    case 3 -> maps.clearList();         //Wyczyszczenie listy
+                    case 3 -> {
+                        maps.clearList();         //Wyczyszczenie listy
+                        ui.printInfoMessage("Lista została wyczyszczona.");
+                    }
                     case 4 -> maps.deleteElement();     //Usunięcie wybranej mapy
                     case 5 -> maps.changeData();        //Zmiana danych wybranej mapy
                     case 6 -> {

@@ -17,6 +17,8 @@
 
 package lab1.data;
 
+import java.io.*;
+
 public class Map {
     private String name;
     private MapType mapType;
@@ -72,6 +74,10 @@ public class Map {
         throw new MapException("Nie ma takiego rodzaju mapy!");
     }
 
+    public void setMapType(MapType mapType){
+        this.mapType = mapType;
+    }
+
     public void setLand(String land) throws MapException {
         if((name == null) || name.equals(""))
             throw new MapException("Nazwa nie może być pusta!");
@@ -84,10 +90,30 @@ public class Map {
         this.price = price;
     }
 
-    public void setReleaseYear(int releaseDate) throws MapException {
-        if(releaseDate > 2021 || releaseDate < 0)
+    public void setPrice(String price) throws MapException {
+        if (price == null || price.equals("")){
+            setPrice(0);
+            return;
+        }
+            setPrice(Float.parseFloat(price));
+    }
+
+    public void setReleaseYear(int releaseYear) throws MapException {
+        if(releaseYear > 2021 || releaseYear < 0)
             throw new MapException("Data wydania musi być w przedziale 0 - 2021!");
-        this.releaseYear = releaseDate;
+        this.releaseYear = releaseYear;
+    }
+
+    public void setReleaseYear(String releaseYear) throws MapException {
+        if (releaseYear == null || releaseYear.equals("")){
+            setReleaseYear(0);
+            return;
+        }
+        try {
+            setReleaseYear(Integer.parseInt(releaseYear));
+        } catch (NumberFormatException e) {
+            throw new MapException("Data wydania musi być liczbą całkowitą.");
+        }
     }
 
     public void displayMapInfo(){
@@ -96,6 +122,48 @@ public class Map {
         System.out.println("Obszar: " + getLand());
         System.out.println("Cena: " + getPrice() + " zł");
         System.out.println("Rok wydania: " + getReleaseYear());
+    }
+
+    public static void printToFile(PrintWriter writer, Map map){
+        writer.println(map.name + "#" + map.mapType +
+                "#" + map.land + "#" + map.price + "#" + map.releaseYear);
+    }
+
+
+    public static void printToFile(String file_name, Map map) throws MapException {
+        try (PrintWriter writer = new PrintWriter(file_name)) {
+            printToFile(writer, map);
+        } catch (FileNotFoundException e){
+            throw new MapException("Nie odnaleziono pliku " + file_name);
+        }
+    }
+
+
+    public static Map readFromFile(BufferedReader reader) throws MapException{
+        try {
+            String line = reader.readLine();
+            String[] txt = line.split("#");
+            Map map = new Map(txt[0], MapType.UNKNOWN, txt[2], 0, 0);
+
+            map.setMapType(txt[1]);
+            map.setPrice(Float.parseFloat(txt[3]));
+            map.setReleaseYear(Integer.parseInt(txt[4]));
+
+            return map;
+        } catch(IOException e){
+            throw new MapException("Wystąpił błąd podczas odczytu danych z pliku.");
+        }
+    }
+
+
+    public static Map readFromFile(String file_name) throws MapException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(file_name)))) {
+            return Map.readFromFile(reader);
+        } catch (FileNotFoundException e){
+            throw new MapException("Nie odnaleziono pliku " + file_name);
+        } catch(IOException e){
+            throw new MapException("Wystąpił błąd podczas odczytu danych z pliku.");
+        }
     }
 
     @Override

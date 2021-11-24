@@ -45,6 +45,10 @@ public class MapList {
         return maps.get(index);
     }
 
+    public int getSize(){
+        return maps.size();
+    }
+
     public void add(Map map){
         maps.add(map);
     }
@@ -105,9 +109,12 @@ public class MapList {
         }
     }
 
+    public void removeMap(int index){
+        maps.remove(index);
+    }
+
     public void clearList(){
         maps.clear();
-        ui.printInfoMessage("Lista została wyczyszczona.");
     }
 
     public static void printToFile(PrintWriter writer) throws MapException {
