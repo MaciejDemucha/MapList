@@ -62,7 +62,7 @@ public class MapConsoleApp {
                         maps.clearList();         //Wyczyszczenie listy
                         ui.printInfoMessage("Lista została wyczyszczona.");
                     }
-                    case 4 -> maps.deleteElement();     //Usunięcie wybranej mapy
+                    case 4 -> maps.deleteElementConsole();     //Usunięcie wybranej mapy
                     case 5 -> maps.changeData();        //Zmiana danych wybranej mapy
                     case 6 -> {
                         //Zapis danych wybranej mapy do pliku tekstowego

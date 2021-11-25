@@ -97,15 +97,20 @@ public class MapList {
         }
     }
 
-    public void deleteElement(){
+    public void deleteElementConsole() throws MapException {
         if(maps.isEmpty()) {
             ui.printInfoMessage("Lista jest pusta");
         }
         else {
-            int listNumber;
-            listNumber = ui.enterInt("Podaj numer z listy mapy, którą chcesz usunąć: ");
-            maps.remove(listNumber - 1);
-            ui.printInfoMessage("Mapa o numerze " + listNumber + " została usunięta z listy.");
+            try{
+                int listNumber;
+                listNumber = ui.enterInt("Podaj numer z listy mapy, którą chcesz usunąć: ");
+                maps.remove(listNumber - 1);
+                ui.printInfoMessage("Mapa o numerze " + listNumber + " została usunięta z listy.");
+            }
+            catch (IndexOutOfBoundsException e){
+                throw new MapException("Nie ma zapisanej mapy na podanym indeksie!");
+            }
         }
     }
 
@@ -118,14 +123,14 @@ public class MapList {
     }
 
     public static void printToFile(PrintWriter writer) throws MapException {
-        int listNumber;
-        listNumber = ui.enterInt("Podaj numer z listy mapy, której dane chcesz zapisać do pliku tekstowego: ");
-        Map map = maps.get(listNumber - 1);
         try{
+            int listNumber;
+            listNumber = ui.enterInt("Podaj numer z listy mapy, której dane chcesz zapisać do pliku tekstowego: ");
+            Map map = maps.get(listNumber - 1);
             writer.println(map.getName() + "#" + map.getMapType() +
                     "#" + map.getLand() + "#" + map.getPrice() + "#" + map.getReleaseYear());
         }
-        catch (ArrayIndexOutOfBoundsException e){
+        catch (IndexOutOfBoundsException e){
             throw new MapException("Nie ma zapisanej mapy na podanym indeksie!");
         }
     }
