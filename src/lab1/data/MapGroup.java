@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class MapList {
+public class MapGroup {
     private static final List<Map> maps = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     static ConsoleUserDialog ui = new ConsoleUserDialog();
@@ -161,7 +161,7 @@ public class MapList {
 
     public static Map readFromFile(String file_name) throws MapException {
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(file_name)))) {
-            return MapList.readFromFile(reader);
+            return MapGroup.readFromFile(reader);
         } catch (FileNotFoundException e){
             throw new MapException("Nie odnaleziono pliku " + file_name);
         } catch(IOException e){

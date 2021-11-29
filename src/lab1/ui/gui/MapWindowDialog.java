@@ -1,6 +1,17 @@
+/*
+ * Program: Program testujący operacje na obiektach klasy Map reprezentujących różne rodzaje map
+ *
+ *       Plik: MapWindowDialog.java
+ *
+ *          Pomocnicze okienko dialogowe pozwalające dodać nowy obiekt typu Map i zmodyfikowanie już dodanego
+ *
+ *   Autor: Maciej Demucha 259111
+ *    Data: 28 pazdziernik 2021 r.
+ *
+ */
+
 package lab1.ui.gui;
 
-import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.Window;

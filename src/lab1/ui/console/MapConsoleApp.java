@@ -14,7 +14,7 @@
 package lab1.ui.console;
 
 import lab1.data.MapException;
-import lab1.data.MapList;
+import lab1.data.MapGroup;
 import java.util.Scanner;
 
 public class MapConsoleApp {
@@ -35,7 +35,7 @@ public class MapConsoleApp {
         boolean shouldContinue = true;
         int choice;
         ConsoleUserDialog ui = new ConsoleUserDialog(); //zestaw metod do aplikacji konsolowej
-        MapList maps = new MapList();        // Klasa przechowująca Arraylist obiektów typu Map i
+        MapGroup maps = new MapGroup();        // Klasa przechowująca Arraylist obiektów typu Map i
                                             //  metody wykonujące działania na tych obiektach
 
         while(shouldContinue) {
@@ -67,13 +67,13 @@ public class MapConsoleApp {
                     case 6 -> {
                         //Zapis danych wybranej mapy do pliku tekstowego
                         String file_name = ui.enterString("Podaj nazwę pliku (podaj rozszerzenie): ");
-                        MapList.printToFile(file_name);
+                        MapGroup.printToFile(file_name);
                         ui.printInfoMessage("Zapisano dane mapy do pliku tekstowego");
                     }
                     case 7 -> {
                         //Pobranie danych z pliku tekstowego i dodanie mapy do listy
                         String file_name = ui.enterString("Podaj nazwę pliku: ");
-                        maps.add(MapList.readFromFile(file_name));
+                        maps.add(MapGroup.readFromFile(file_name));
                         ui.printInfoMessage("Dodano mapę z pliku tekstowego.");
                     }
                     case 8 -> {
