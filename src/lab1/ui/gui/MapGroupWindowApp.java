@@ -5,6 +5,7 @@
  *
  *          Aplikacja okienkowa pozwalająca przetestować poszczególne operacje na obiektach klasy Map zawartych
  *          w ArrayList maps.
+ *          WERSJA DLA WIELU MAP
  *
  *   Autor: Maciej Demucha 259111
  *    Data: 29 listopad 2021 r.
