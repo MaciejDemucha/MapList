@@ -19,13 +19,13 @@ package lab1.data;
 
 import java.io.*;
 
-public class Map {
-    private String name;
-    private MapType mapType;
-    private String land;
-    private float price;
-    private int releaseYear;
-
+public class Map implements Serializable, Comparable {
+    private String name; //Nazwa
+    private MapType mapType; //Rodzaj mapy
+    private String land;    //Przedstawiany obszar
+    private float price;    //Cena
+    private int releaseYear; //Rok wydania
+    //konstruktor
     public Map(String name, MapType mapType, String land, float price, int releaseYear) {
         this.name = name;
         this.mapType = mapType;
@@ -33,7 +33,7 @@ public class Map {
         this.price = price;
         this.releaseYear = releaseYear;
     }
-
+    //gettery
     public String getName() {
         return name;
     }
@@ -53,7 +53,7 @@ public class Map {
     public int getReleaseYear() {
         return releaseYear;
     }
-
+    //settery
     public void setName(String name) throws MapException {
         if((name == null) || name.equals(""))
             throw new MapException("Nazwa nie może być pusta!");
@@ -115,7 +115,7 @@ public class Map {
             throw new MapException("Data wydania musi być liczbą całkowitą.");
         }
     }
-
+    //Wyświetlenie informacji o mapie
     public void displayMapInfo(){
         System.out.println("Nazwa: " + getName());
         System.out.println("Rodzaj: " + getMapType());
@@ -123,12 +123,55 @@ public class Map {
         System.out.println("Cena: " + getPrice() + " zł");
         System.out.println("Rok wydania: " + getReleaseYear());
     }
+    //Metody do zad 3
+/*
+    public static void printToFileBinary(PrintWriter writer,Map map){
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("map.bin"))) {
+            outputStream.writeObject(map);
 
+            writer.println(map.name + "#" + map.mapType +
+                    "#" + map.land + "#" + map.price + "#" + map.releaseYear);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void printToFileBinary(String file_name, Map map) throws MapException {
+        try (PrintWriter writer = new PrintWriter(file_name)) {
+            printToFileBinary(writer, map);
+        } catch (FileNotFoundException e){
+            throw new MapException("Nie odnaleziono pliku " + file_name);
+        }
+    }
+
+    public static Map readFromFileBinary(Map map){
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("map.bin"))) {
+            map = (Map) inputStream.readObject();
+            return map;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    public static Map readFromFileBinary(String file_name) throws MapException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(file_name)))) {
+            return Map.readFromFile(reader);
+        } catch (FileNotFoundException e){
+            throw new MapException("Nie odnaleziono pliku " + file_name);
+        } catch(IOException e){
+            throw new MapException("Wystąpił błąd podczas odczytu danych z pliku.");
+        }
+    }
+*/
+    //Zapisanie do pliku
     public static void printToFile(PrintWriter writer, Map map){
         writer.println(map.name + "#" + map.mapType +
                 "#" + map.land + "#" + map.price + "#" + map.releaseYear);
     }
-
 
     public static void printToFile(String file_name, Map map) throws MapException {
         try (PrintWriter writer = new PrintWriter(file_name)) {
@@ -138,7 +181,7 @@ public class Map {
         }
     }
 
-
+//Wczytanie z pliku
     public static Map readFromFile(BufferedReader reader) throws MapException{
         try {
             String line = reader.readLine();
@@ -170,4 +213,20 @@ public class Map {
     public String toString(){
         return name + " " + land;
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
+
+    //@Override
+   // public int compareTo(Map o) {
+
+           // if (getName() == null || o.getName() == null) {
+              //  return 0;
+           // }
+          //  return getName().compareTo(o.getName());
+      //  }
+
+
 }

@@ -21,7 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ec3e6561-fd24-42e4-ba30-ab2345c393b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/data/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab1_259111/lab1/data/Map.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/MapGroupWindowApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/MapWindowApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/MapWindowApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/data/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/data/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/data/MapGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/data/MapGroupOld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/ui/console/MapConsoleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/console/MapConsoleApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowAppOld.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab1/ui/gui/MapWindowApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/gui/MapWindowApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +62,20 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
-  <component name="RunManager" selected="Application.MapWindowApp">
+  <component name="RunManager" selected="Application.GroupManager">
+    <configuration name="GroupManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lab1.ui.gui.GroupManager" />
+      <module name="lab1_259111" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lab1.ui.gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MapConsoleApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lab1.ui.console.MapConsoleApp" />
       <module name="lab1_259111" />
@@ -70,8 +89,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MapGroupWindowApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lab1.ui.gui.MapGroupWindowApp" />
+    <configuration name="MapGroupWindowAppOld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lab1.ui.gui.MapGroupWindowAppOld" />
       <module name="lab1_259111" />
       <extension name="coverage">
         <pattern>
@@ -98,8 +117,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GroupManager" />
         <item itemvalue="Application.MapWindowApp" />
-        <item itemvalue="Application.MapGroupWindowApp" />
+        <item itemvalue="Application.MapGroupWindowAppOld" />
         <item itemvalue="Application.MapConsoleApp" />
       </list>
     </recent_temporary>
@@ -138,34 +158,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="557" y="262" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1637847211300" />
-    <state x="574" y="143" key="#com.intellij.ide.util.MemberChooser" timestamp="1637654204018">
+    <state x="574" y="143" key="#com.intellij.ide.util.MemberChooser" timestamp="1638971465022">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="143" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1637654204018" />
+    <state x="574" y="143" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1638971465022" />
     <state x="499" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1638220186873">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1638220186873" />
-    <state x="549" y="139" key="FileChooserDialogImpl" timestamp="1638219996915">
+    <state x="549" y="139" key="FileChooserDialogImpl" timestamp="1638949936781">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="139" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1638219996915" />
-    <state width="1478" height="184" key="GridCell.Tab.0.bottom" timestamp="1638293786495">
+    <state x="549" y="139" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1638949936781" />
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1638971902095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1638293786495" />
-    <state width="1478" height="184" key="GridCell.Tab.0.center" timestamp="1638293786495">
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
+    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1638971902095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1638293786495" />
-    <state width="1478" height="184" key="GridCell.Tab.0.left" timestamp="1638293786495">
+    <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
+    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1638971902095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1638293786495" />
-    <state width="1478" height="184" key="GridCell.Tab.0.right" timestamp="1638293786495">
+    <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1638971902095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1638293786495" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1638220205454">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

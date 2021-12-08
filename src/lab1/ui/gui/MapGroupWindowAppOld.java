@@ -16,20 +16,22 @@ package lab1.ui.gui;
 
 import lab1.data.Map;
 import lab1.data.MapException;
-import lab1.data.MapGroup;
+import lab1.data.MapGroupOld;
+import lab1.data.MapType;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MapGroupWindowApp extends JFrame implements ActionListener {
+public class MapGroupWindowAppOld extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
     int mapIndex = 0;
-    private MapGroup maps = new MapGroup();
+    private MapGroupOld maps = new MapGroupOld();
     private Map currentMap;
+    private Map toAdd = new Map("ads", MapType.ECONOMIC, "polska", 20, 2000);
 
 
     Font font = new Font("MonoSpaced", Font.BOLD, 12);
@@ -59,12 +61,14 @@ public class MapGroupWindowApp extends JFrame implements ActionListener {
     JButton infoButton   = new JButton("O programie");
     JButton exitButton   = new JButton("Zakończ aplikację");
 
-    public MapGroupWindowApp() {
+    public MapGroupWindowAppOld() {
         setTitle("Lista map");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(300, 420);
         setResizable(false);
         setLocationRelativeTo(null);
+
+        maps.add(toAdd);
 
         indexLabel.setFont(font);
         nameLabel.setFont(font);
@@ -158,7 +162,7 @@ public class MapGroupWindowApp extends JFrame implements ActionListener {
                     "Data: 2 grudnia 2021 r.\n";
 
     public static void main(String[] args) {
-        new MapGroupWindowApp();
+        new MapGroupWindowAppOld();
     }
 
     @Override

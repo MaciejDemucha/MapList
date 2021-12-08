@@ -1,0 +1,5 @@
+gfb
+Zbiór   (klasa HashSet)
+rge#Topograficzna#gre#20.0#2000
+Mapa POlski#Ekonomiczna#POlska#50.0#2001
+bd#Ekonomiczna#wf#24.0#1999

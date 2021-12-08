@@ -25,30 +25,28 @@ import java.io.File;
 public class MapWindowApp extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-
+    //Zmienna przechowująca obecnie zapisaną mapę
     private Map currentMap;
 
-
+    //Czcionka
     Font font = new Font("MonoSpaced", Font.BOLD, 12);
-
+    //Podpisy pól
     JLabel nameLabel        = new JLabel("               Nazwa: ");
     JLabel mapTypeLabel     = new JLabel("         Rodzaj mapy: ");
     JLabel landLabel        = new JLabel("Przedstawiony obszar: ");
     JLabel priceLabel       = new JLabel("                Cena: ");
     JLabel releaseYearLabel = new JLabel("         Rok wydania: ");
-
+    //Pola wyświetlające dane mapy
     JTextField nameField        = new JTextField(10);
     JTextField mapTypeField     = new JTextField(10);
     JTextField landField        = new JTextField(10);
     JTextField priceField       = new JTextField(10);
     JTextField releaseYearField = new JTextField(10);
-
+    //przyciski
     JButton newButton    = new JButton("Nowa mapa");
     JButton editButton   = new JButton("Zmień dane bieżącej mapy");
     JButton saveButton   = new JButton("Zapisz do pliku");
-    JButton saveWindowButton   = new JButton("Zapisz do pliku (JFileChooser)");
     JButton loadButton   = new JButton("Wczytaj z pliku");
-    JButton loadWindowButton   = new JButton("Wczytaj z pliku (JFileChooser)");
     JButton deleteButton = new JButton("Usuń mapę");
     JButton infoButton   = new JButton("O programie");
     JButton exitButton   = new JButton("Zakończ aplikację");
@@ -65,7 +63,7 @@ public class MapWindowApp extends JFrame implements ActionListener {
 
     JMenuItem load = new JMenuItem("Wczytaj mapę");
     JMenuItem save = new JMenuItem("Zapisz mapę");
-
+    //konstruktor aplikacji okienkowej
     public MapWindowApp() {
         setTitle("Mapa");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -83,25 +81,23 @@ public class MapWindowApp extends JFrame implements ActionListener {
         file.add(load);
         file.add(save);
         file.add(info);
-
+        //ustawienie czcionki
         nameLabel.setFont(font);
         mapTypeLabel.setFont(font);
         landLabel.setFont(font);
         priceLabel.setFont(font);
         releaseYearLabel.setFont(font);
-
+        //Brak możliwości edycji pól
         nameField.setEditable(false);
         mapTypeField.setEditable(false);
         landField.setEditable(false);
         priceField.setEditable(false);
         releaseYearField.setEditable(false);
-
+        //Dodanie ActionListenerów
         newButton.addActionListener(this);
         editButton.addActionListener(this);
         saveButton.addActionListener(this);
-        saveWindowButton.addActionListener(this);
         loadButton.addActionListener(this);
-        loadWindowButton.addActionListener(this);
         deleteButton.addActionListener(this);
         infoButton.addActionListener(this);
         exitButton.addActionListener(this);
@@ -112,9 +108,9 @@ public class MapWindowApp extends JFrame implements ActionListener {
         load.addActionListener(this);
         deleteMap.addActionListener(this);
         info.addActionListener(this);
-
+        //panel
         JPanel panel = new JPanel();
-
+        //Dodanie komponentów do panelu
         panel.add(nameLabel);
         panel.add(nameField);
 
@@ -133,22 +129,20 @@ public class MapWindowApp extends JFrame implements ActionListener {
         panel.add(newButton);
         panel.add(editButton);
         panel.add(loadButton);
-        panel.add(loadWindowButton);
         panel.add(saveButton);
-        panel.add(saveWindowButton);
         panel.add(deleteButton);
         panel.add(infoButton);
         panel.add(exitButton);
-
+        //Wstawienie panelu
         setContentPane(panel);
-
-       showCurrentMap();
-
+        //Wyświetlenie mapy
+        showCurrentMap();
+        //Ustawienie widoczności okienka
         setVisible(true);
 
     }
 
-
+    //Wyświetlenie mapy
     void showCurrentMap(){
         if(currentMap == null){
             nameField.setText("");
@@ -165,7 +159,7 @@ public class MapWindowApp extends JFrame implements ActionListener {
             releaseYearField.setText("" + currentMap.getReleaseYear());
         }
     }
-
+    //Opis aplikacji
     private static final String AUTHOR =
             "Języki programowania - Laboratorium 2\n" +
                     "Program: Map - wersja okienkowa\n" +
@@ -175,7 +169,7 @@ public class MapWindowApp extends JFrame implements ActionListener {
     public static void main(String[] args) {
         new MapWindowApp();
     }
-
+    //Wydarzenia po naciśnięciu przycisków
     @Override
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
@@ -193,11 +187,6 @@ public class MapWindowApp extends JFrame implements ActionListener {
             }
 
             if (eventSource == saveButton || eventSource == save) {
-                String fileName = JOptionPane.showInputDialog("Podaj nazwę pliku");
-                if (fileName == null || fileName.equals("")) return;  // Cancel lub pusta nazwa pliku.
-                Map.printToFile(fileName, currentMap);
-            }
-            if (eventSource == saveWindowButton) {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setCurrentDirectory(new File("."));
                 int response = fileChooser.showSaveDialog(this);
@@ -208,13 +197,8 @@ public class MapWindowApp extends JFrame implements ActionListener {
                 }
 
             }
+
             if (eventSource == loadButton || eventSource == load) {
-                String fileName = JOptionPane.showInputDialog("Podaj nazwę pliku");
-                if (fileName == null || fileName.equals("")) return;  // Cancel lub pusta nazwa pliku.
-                currentMap = Map.readFromFile(fileName);
-                showCurrentMap();
-            }
-            if (eventSource == loadWindowButton) {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setCurrentDirectory(new File("."));
                 int response = fileChooser.showOpenDialog(this);
