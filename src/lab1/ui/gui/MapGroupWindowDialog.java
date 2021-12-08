@@ -1,3 +1,12 @@
+/*
+ * Program: Aplikacja okienkowa z GUI, która umożliwia zarządzanie
+ *          grupami obiektów klasy Map.
+ *    Plik: MapGroupWindowDialog.java
+ *
+ *   Autor: Maciej Demucha
+ *    Data: 9 grudnia 2021 r.
+ */
+
 package lab1.ui.gui;
 
 import lab1.data.*;
@@ -8,13 +17,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-import java.util.List;
 
 import static java.awt.Dialog.ModalityType.DOCUMENT_MODAL;
 
 public class MapGroupWindowDialog extends JDialog implements ActionListener {
-    private MapGroup currentGroup;
-    private Map currentMap;
+
+    private MapGroup currentGroup; //Zmienna pamiętająca modyfikowaną grupę
+    private Map currentMap;        //Zmienna pomocnicza do zapamiętywania odpowiedniej mapy
 
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +40,7 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
     JTextField nameField = new JTextField(30);
     JTextField collectionField    = new JTextField(30);
 
-    ViewMapList viewMapList;
+    ViewMapList viewMapList; //Obiekt pomocniczej klasy do wyświetlania tabeli listy map
 
     //Pasek menu na górze
     JMenuBar menuBar            = new JMenuBar();
@@ -50,6 +59,8 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
     JMenuItem menuSortAl         = new JMenuItem("alfabetycznie");
     JMenuItem menuSortYear         = new JMenuItem("wg. roku wydania");
     JMenuItem menuSortType         = new JMenuItem("wg. rodzaju");
+    JMenuItem menuSortLand         = new JMenuItem("wg. obszaru");
+    JMenuItem menuSortPrice         = new JMenuItem("wg. ceny");
 
     JMenuItem menuChangeName         = new JMenuItem("Zmień nazwę");
     JMenuItem menuChangeCollection   = new JMenuItem("Zmień typ kolekcji");
@@ -64,12 +75,13 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
     JButton buttonSavePerson     = new JButton("Zapisz mapę do pliku");
 
 
-
+    //Konstruktor
     public MapGroupWindowDialog(Window parent, MapGroup currentGroup) {
 
         super(parent, DOCUMENT_MODAL);
         this.currentGroup = currentGroup;
 
+        //Właściwości okna i Textfieldów
         setTitle("Modyfikacja grupy map");
         setSize(450, 450);
         setResizable(false);
@@ -82,6 +94,7 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
         nameField.setText(currentGroup.getName());
         collectionField.setText(currentGroup.getType().toString());
 
+        //Dodanie i ustawienie paska menu
         setJMenuBar(menuBar);
         menuBar.add(menuList);
         menuBar.add(menuSort);
@@ -95,8 +108,10 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
         menuList.add(menuSavePerson);
 
         menuSort.add(menuSortAl);
-        menuSort.add(menuSortYear);
         menuSort.add(menuSortType);
+        menuSort.add(menuSortLand);
+        menuSort.add(menuSortPrice);
+        menuSort.add(menuSortYear);
 
         menuProperties.add(menuChangeName);
         menuProperties.add(menuChangeCollection);
@@ -117,6 +132,8 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
         menuSortAl.addActionListener(this);
         menuSortYear.addActionListener(this);
         menuSortType.addActionListener(this);
+        menuSortLand.addActionListener(this);
+        menuSortPrice.addActionListener(this);
         menuChangeName.addActionListener(this);
         menuChangeCollection.addActionListener(this);
         menuAuthor.addActionListener(this);
@@ -138,12 +155,12 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
 
         setContentPane(panel);
 
-        viewMapList.refreshView();
+        viewMapList.refreshView(); //Odświeżenie stanu listy
         setVisible(true);
 
     }
 
-
+    //Obsługa funckji przez przyciski i pasek menu
     @Override
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
@@ -210,6 +227,14 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
                 currentGroup.sortType();
             }
 
+            if(eventSource == menuSortLand){
+                currentGroup.sortLand();
+            }
+
+            if(eventSource == menuSortPrice){
+                currentGroup.sortPrice();
+            }
+
             if(eventSource == menuChangeName){
                 String groupName = JOptionPane.showInputDialog("Podaj nazwę grupy");
                 currentGroup.setName(groupName);
@@ -242,8 +267,8 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
 
     }
 
-
-    public static MapGroup createNewGroupOfPeople(Window parent) throws MapException {
+    //Utworzenie nowej grupy
+    public static MapGroup createNewMapGroup(Window parent) throws MapException {
         String groupName = JOptionPane.showInputDialog("Podaj nazwę grupy");
         if (groupName == null || groupName.equals("")) return null;
 
@@ -261,7 +286,7 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
 }
 
 /*
- * Pomocnicza klasa do wyświetlania listy grup
+ * Pomocnicza klasa do wyświetlania listy map
  * w postaci tabeli na panelu okna głównego
  */
 class ViewMapList extends JScrollPane {

@@ -3,8 +3,8 @@
  *          grupami obiektów klasy Person.
  *    Plik: GroupType.java
  *
- *   Autor: Paweł Rogalinski
- *    Data: pazdziernik 2021 r.
+ *   Autor: Maciej Demucha
+ *    Data: 9 grudnia 2021 r.
  */
 
 package lab1.data;
@@ -19,12 +19,9 @@ import java.util.Vector;
 
 
 /*
- *  Typ wyliczeniowy GroupType reprezentuje typy kolekcji,
- *  które mogą być wykorzystane do tworzenia grupy osób.
- *  w programie można wybrać dwa rodzaje kolekcji: listy i zbiory.
- *  Każdy rodzaj kolekcji może być implementowany przy pomocy
- *  różnych klas:
- *      Listy: klasa Vector, klasa ArrayList, klasa LinnkedList;
+ *  Enum GroupType reprezentuje rodzaje kolekcji służących do
+ *  grupowania obiektów typu Map
+ *      Listy: klasa Vector, klasa ArrayList, klasa LinkedList;
  *     Zbiory: klasa TreeSet, klasa HashSet.
  */
 public enum GroupType {
@@ -58,8 +55,7 @@ public enum GroupType {
 
 
     // Metoda createCollection() dla wybranego typu grupy
-    // tworzy kolekcję obiektów klasy Person implementowaną
-    // za pomocą właściwej klasy z pakietu Java Collection Framework.
+    // tworzy kolekcję obiektów klasy Map
     public Collection<Map> createCollection() throws MapException {
         switch (this) {
             case VECTOR:      return new Vector<Map>();

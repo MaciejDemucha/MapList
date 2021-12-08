@@ -21,14 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ec3e6561-fd24-42e4-ba30-ab2345c393b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LISTA_GRUP.BIN" beforeDir="false" afterPath="$PROJECT_DIR$/LISTA_GRUP.BIN" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/data/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab1_259111/lab1/data/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/MapGroupWindowApp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/MapWindowApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/MapWindowApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/data/MapGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab1_259111/lab1/data/MapGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/GroupManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab1_259111/lab1/ui/gui/GroupManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/data/GroupType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/data/GroupType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab1/data/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/data/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab1/data/MapGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/data/MapGroupOld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab1/ui/console/MapConsoleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/console/MapConsoleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowAppOld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab1/ui/gui/MapWindowApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/gui/MapWindowApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/data/MapGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/data/MapGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/ui/gui/GroupManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/gui/GroupManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab1/ui/gui/MapGroupWindowDialog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,10 +155,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="175" y="200" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1637654430025" />
-    <state x="557" y="262" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1637847211300">
+    <state x="557" y="262" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1638980342904">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="557" y="262" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1637847211300" />
+    <state x="557" y="262" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1638980342904" />
     <state x="574" y="143" key="#com.intellij.ide.util.MemberChooser" timestamp="1638971465022">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -170,22 +171,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="139" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1638949936781" />
-    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1638971902095">
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1638983127233">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
-    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1638971902095">
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1638983127233" />
+    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1638983127233">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
-    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1638971902095">
+    <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1638983127233" />
+    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1638983127233">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
-    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1638971902095">
+    <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1638983127233" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1638983127233">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1638971902095" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1638983127233" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1638220205454">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

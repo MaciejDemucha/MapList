@@ -1,10 +1,10 @@
 /*
  * Program: Aplikacja okienkowa z GUI, która umożliwia
- *          zarządzanie grupami obiektów klasy Person.
- *    Plik: GroupManagerApp.java
+ *          zarządzanie grupami obiektów klasy Map.
+ *    Plik: GroupManager.java
  *
- *   Autor: Paweł Rogalinski
- *    Data: pazdziernik 2021 r.
+ *   Autor: Maciej Demucha
+ *    Data: 9 grudnia 2021 r.
  */
 
 package lab1.ui.gui;
@@ -46,38 +46,12 @@ public class GroupManager extends JFrame implements ActionListener {
     // zamykaniu aplikacji i z którego są czytane dane po uruchomieniu.
     private static final String ALL_GROUPS_FILE = "LISTA_GRUP.BIN";
 
-    // Utworzenie obiektu reprezentującego główne okno aplikacji.
-    // Po utworzeniu obiektu na pulpicie zostanie wyświetlone
-    // główne okno aplikacji.
+    // Utworzenie obiektu aplikacji - wyświetlenie okna zarządzania grupami
     public static void main(String[] args) {
         new GroupManager();
     }
 
-
-    WindowAdapter windowListener = new WindowAdapter() {
-
-        @Override
-        public void windowClosed(WindowEvent e) {
-            // Wywoływane gdy okno aplikacji jest zamykane za pomocą
-            // wywołania metody dispose()
-
-            JOptionPane.showMessageDialog(null, "Program zakończył działanie!");
-
-        }
-
-
-        @Override
-        public void windowClosing(WindowEvent e) {
-            // Wywoływane gdy okno aplikacji jest  zamykane za pomocą
-            // systemowego menu okna tzn. krzyżyk w narożniku)
-            windowClosed(e);
-        }
-
-    };
-
-
-
-    // Zbiór grup osób, którymi zarządza aplikacja
+    // Lista zarządzanych grup
     private List<MapGroup> currentList = new ArrayList<MapGroup>();
 
     // Pasek menu wyświetlany na panelu w głównym oknie aplikacji
@@ -117,10 +91,10 @@ public class GroupManager extends JFrame implements ActionListener {
     // na panelu w oknie głównym aplikacji
     ViewGroupList viewList;
 
-
+    //Konstruktor aplikacji okienkowej
     public GroupManager() {
         // Konfiguracja parametrów głównego okna aplikacji
-        setTitle("GroupManager - zarządzanie grupami osób");
+        setTitle("GroupManager - zarządzanie grupami map");
         setSize(450, 400);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -130,9 +104,6 @@ public class GroupManager extends JFrame implements ActionListener {
         // umożliwi automatyczny zapis danych do pliku,
         // gdy główne okno aplikacji jest zamykane.
         addWindowListener(new WindowAdapter() {
-                              // To jest definicja anonimowej klasy (klasy bez nazwy)
-                              // która dziedziczy po klasie WindowAdapter i przedefiniowuje
-                              // metody windowClosed oraz windowClosing.
 
                               @Override
                               public void windowClosed(WindowEvent event) {
@@ -166,7 +137,7 @@ public class GroupManager extends JFrame implements ActionListener {
         }
 
 
-        // Utworzenie i konfiguracja menu aplikacji
+        // Utworzenie i konfiguracja paska menu
         setJMenuBar(menuBar);
         menuBar.add(menuGroups);
         menuBar.add(menuSpecialGroups);
@@ -186,10 +157,7 @@ public class GroupManager extends JFrame implements ActionListener {
 
         menuAbout.add(menuAuthor);
 
-        // Dodanie słuchaczy zdarzeń do wszystkich opcji menu.
-        // UWAGA: słuchaczem zdarzeń będzie metoda actionPerformed
-        // zaimplementowana w tej klasie i wywołana dla
-        // bieżącej instancji okna aplikacji - referencja this
+        // Dodanie ActionListenerów
         menuNewGroup.addActionListener(this);
         menuEditGroup.addActionListener(this);
         menuDeleteGroup.addActionListener(this);
@@ -201,10 +169,6 @@ public class GroupManager extends JFrame implements ActionListener {
         menuGroupSymmetricDiff.addActionListener(this);
         menuAuthor.addActionListener(this);
 
-        // Dodanie słuchaczy zdarzeń do wszystkich przycisków.
-        // UWAGA: słuchaczem zdarzeń będzie metoda actionPerformed
-        // zaimplementowana w tej klasie i wywołana dla
-        // bieżącej instancji okna aplikacji - referencja this
         buttonNewGroup.addActionListener(this);
         buttonEditGroup.addActionListener(this);
         buttonDeleteGroup.addActionListener(this);
@@ -215,13 +179,10 @@ public class GroupManager extends JFrame implements ActionListener {
         buttonDifference.addActionListener(this);
         buttonSymmetricDiff.addActionListener(this);
 
-        // Utwotrzenie tabeli z listą osób należących do grupy
+        // Utworzenie tabeli z listą grup
         viewList = new ViewGroupList(currentList, 400, 250);
         viewList.refreshView();
 
-        // Utworzenie głównego panelu okna aplikacji.
-        // Domyślnym menedżerem rozkładu dla panelu będzie
-        // FlowLayout, który układa wszystkie komponenty jeden za drugim.
         JPanel panel = new JPanel();
 
         // Dodanie i rozmieszczenie na panelu wszystkich
@@ -240,17 +201,11 @@ public class GroupManager extends JFrame implements ActionListener {
         // Umieszczenie Panelu w głównym oknie aplikacji.
         setContentPane(panel);
 
-        // Pokazanie na ekranie głównego okna aplikacji
-        // UWAGA: Tą instrukcję należy wykonać jako ostatnią
-        // po zainicjowaniu i rozmieszczeniu na panelu
-        // wszystkich komponentów GUI.
-        // Od tego momentu aplikacja uruchamia główną pętlę zdarzeń
-        // która działa w nowym wątku niezależnie od pozostałej części programu.
         setVisible(true);
     }
 
 
-
+    //Wczytanie grup z pliku
     @SuppressWarnings("unchecked")
     void loadGroupListFromFile(String file_name) throws MapException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file_name))) {
@@ -262,7 +217,7 @@ public class GroupManager extends JFrame implements ActionListener {
         }
     }
 
-
+    //Zapis grup do pliku
     void saveGroupListToFile(String file_name) throws MapException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file_name))) {
             out.writeObject(currentList);
@@ -289,15 +244,14 @@ public class GroupManager extends JFrame implements ActionListener {
     }
 
 
-
+    //Obsługa funkcji przez przyciski i pasek menu
     @Override
     public void actionPerformed(ActionEvent event) {
-        // Odczytanie referencji do obiektu, który wygenerował zdarzenie.
         Object source = event.getSource();
 
         try {
             if (source == menuNewGroup || source == buttonNewGroup) {
-                MapGroup group = MapGroupWindowDialog.createNewGroupOfPeople(this);
+                MapGroup group = MapGroupWindowDialog.createNewMapGroup(this);
                 if (group != null) {
                     currentList.add(group);
                 }
@@ -348,16 +302,16 @@ public class GroupManager extends JFrame implements ActionListener {
                 }
             }
 
-            /*if (source == menuGroupUnion || source == buttonUnion) {
+            if (source == menuGroupUnion || source == buttonUnion) {
                 String message1 =
                         "SUMA GRUP\n\n" +
-                                "Tworzenie grupy zawierającej wszystkie osoby z grupy pierwszej\n" +
-                                "oraz wszystkie osoby z grupy drugiej.\n" +
+                                "Tworzenie grupy zawierającej wszystkie mapy z grupy pierwszej\n" +
+                                "oraz wszystkie mapy z grupy drugiej.\n" +
                                 "Wybierz pierwszą grupę:";
                 String message2 =
                         "SUMA GRUP\n\n" +
-                                "Tworzenie grupy zawierającej wszystkie osoby z grupy pierwszej\n" +
-                                "oraz wszystkie osoby z grupy drugiej.\n" +
+                                "Tworzenie grupy zawierającej wszystkie mapy z grupy pierwszej\n" +
+                                "oraz wszystkie mapy z grupy drugiej.\n" +
                                 "Wybierz drugą grupę:";
                 MapGroup group1 = chooseGroup(this, message1);
                 if (group1 == null)
@@ -371,12 +325,12 @@ public class GroupManager extends JFrame implements ActionListener {
             if (source == menuGroupIntersection || source == buttonIntersection) {
                 String message1 =
                         "ILOCZYN GRUP\n\n" +
-                                "Tworzenie grupy osób, które należą zarówno do grupy pierwszej,\n" +
+                                "Tworzenie grupy map, które należą zarówno do grupy pierwszej,\n" +
                                 "jak i do grupy drugiej.\n" +
                                 "Wybierz pierwszą grupę:";
                 String message2 =
                         "ILOCZYN GRUP\n\n" +
-                                "Tworzenie grupy osób, które należą zarówno do grupy pierwszej,\n" +
+                                "Tworzenie grupy map, które należą zarówno do grupy pierwszej,\n" +
                                 "jak i do grupy drugiej.\n" +
                                 "Wybierz drugą grupę:";
                 MapGroup group1 = chooseGroup(this, message1);
@@ -391,12 +345,12 @@ public class GroupManager extends JFrame implements ActionListener {
             if (source == menuGroupDifference || source == buttonDifference) {
                 String message1 =
                         "RÓŻNICA GRUP\n\n" +
-                                "Tworzenie grupy osób, które należą do grupy pierwszej\n" +
+                                "Tworzenie grupy map, które należą do grupy pierwszej\n" +
                                 "i nie ma ich w grupie drugiej.\n" +
                                 "Wybierz pierwszą grupę:";
                 String message2 =
                         "RÓŻNICA GRUP\n\n" +
-                                "Tworzenie grupy osób, które należą do grupy pierwszej\n" +
+                                "Tworzenie grupy map, które należą do grupy pierwszej\n" +
                                 "i nie ma ich w grupie drugiej.\n" +
                                 "Wybierz drugą grupę:";
                 MapGroup group1 = chooseGroup(this, message1);
@@ -410,10 +364,10 @@ public class GroupManager extends JFrame implements ActionListener {
 
             if (source == menuGroupSymmetricDiff || source == buttonSymmetricDiff) {
                 String message1 = "RÓŻNICA SYMETRYCZNA GRUP\n\n"
-                        + "Tworzenie grupy zawierającej osoby należące tylko do jednej z dwóch grup,\n"
+                        + "Tworzenie grupy zawierającej mapy należące tylko do jednej z dwóch grup,\n"
                         + "Wybierz pierwszą grupę:";
                 String message2 = "RÓŻNICA SYMETRYCZNA GRUP\n\n"
-                        + "Tworzenie grupy zawierającej osoby należące tylko do jednej z dwóch grup,\n"
+                        + "Tworzenie grupy zawierającej mapy należące tylko do jednej z dwóch grup,\n"
                         + "Wybierz drugą grupę:";
                 MapGroup group1 = chooseGroup(this, message1);
                 if (group1 == null)
@@ -422,7 +376,7 @@ public class GroupManager extends JFrame implements ActionListener {
                 if (group2 == null)
                     return;
                 currentList.add( MapGroup.createGroupSymmetricDiff(group1, group2) );
-            }*/
+            }
 
             if (source == menuAuthor) {
                 JOptionPane.showMessageDialog(this, GREETING_MESSAGE);
@@ -436,7 +390,7 @@ public class GroupManager extends JFrame implements ActionListener {
         viewList.refreshView();
     }
 
-} // koniec klasy GroupManagerApp
+}
 
 
 
@@ -490,4 +444,4 @@ class ViewGroupList extends JScrollPane {
         return index;
     }
 
-} // koniec klasy ViewGroupList
+}

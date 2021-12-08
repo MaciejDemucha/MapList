@@ -18,8 +18,9 @@
 package lab1.data;
 
 import java.io.*;
+import java.util.Objects;
 
-public class Map implements Serializable, Comparable {
+public class Map implements Serializable, Comparable<Map> {
     private String name; //Nazwa
     private MapType mapType; //Rodzaj mapy
     private String land;    //Przedstawiany obszar
@@ -209,24 +210,31 @@ public class Map implements Serializable, Comparable {
         }
     }
 
+    //Własna implementacja metody toString wyswietlająca nazwę mapy i przedstawiany przez nią obszar
     @Override
     public String toString(){
         return name + " " + land;
     }
 
+    //Własna implementacja metody compareTo porównująca nazwy map
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Map o) {
+
+            if (getName() == null || o.getName() == null) {
+                return 0;
+            }
+            return getName().compareTo(o.getName());
+        }
+    //Własna implementacja metody hashCode
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, mapType, land, price, releaseYear);
     }
-
-    //@Override
-   // public int compareTo(Map o) {
-
-           // if (getName() == null || o.getName() == null) {
-              //  return 0;
-           // }
-          //  return getName().compareTo(o.getName());
-      //  }
-
+    //Własna implementacja metody equals porównująca obiekty klasy Map
+    @Override
+    public boolean equals(Object o){
+        Map map = (Map) o;
+            return map.getName().equals(getName()) && map.getLand().equals(getLand()) && map.getPrice() == getPrice() && map.getReleaseYear() == getReleaseYear() && map.getMapType().equals(getMapType());
+        }
 
 }
