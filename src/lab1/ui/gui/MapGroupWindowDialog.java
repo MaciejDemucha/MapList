@@ -50,11 +50,11 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
     JMenu menuProperties        = new JMenu("Właściwości");
     JMenu menuAbout             = new JMenu("O programie");
 
-    JMenuItem menuNewPerson         = new JMenuItem("Dodaj nową mapę");
-    JMenuItem menuEditPerson        = new JMenuItem("Edytuj mapę");
-    JMenuItem menuDeletePerson      = new JMenuItem("Usuń mapę");
-    JMenuItem menuLoadPerson        = new JMenuItem("Wczytaj mapę z pliku");
-    JMenuItem menuSavePerson        = new JMenuItem("Zapisz mapę do pliku");
+    JMenuItem menuNewMap         = new JMenuItem("Dodaj nową mapę");
+    JMenuItem menuEditMap        = new JMenuItem("Edytuj mapę");
+    JMenuItem menuDeleteMap      = new JMenuItem("Usuń mapę");
+    JMenuItem menuLoadMap        = new JMenuItem("Wczytaj mapę z pliku");
+    JMenuItem menuSaveMap        = new JMenuItem("Zapisz mapę do pliku");
 
     JMenuItem menuSortAl         = new JMenuItem("alfabetycznie");
     JMenuItem menuSortYear         = new JMenuItem("wg. roku wydania");
@@ -68,11 +68,11 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
     JMenuItem menuAuthor             = new JMenuItem("O programie");
 
     // Przyciski wyświetlane na panelu w głównym oknie aplikacji
-    JButton buttonNewPerson      = new JButton("Dodaj nową mapę");
-    JButton buttonEditPerson     = new JButton("Edytuj mapę");
-    JButton buttonDeletePerson   = new JButton(" Usuń mapę");
-    JButton buttonLoadPerson     = new JButton("Wczytaj mapę z pliku");
-    JButton buttonSavePerson     = new JButton("Zapisz mapę do pliku");
+    JButton buttonNewMap      = new JButton("Dodaj nową mapę");
+    JButton buttonEditMap     = new JButton("Edytuj mapę");
+    JButton buttonDeleteMap   = new JButton(" Usuń mapę");
+    JButton buttonLoadMap     = new JButton("Wczytaj mapę z pliku");
+    JButton buttonSaveMap     = new JButton("Zapisz mapę do pliku");
 
 
     //Konstruktor
@@ -101,11 +101,11 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
         menuBar.add(menuProperties);
         menuBar.add(menuAbout);
 
-        menuList.add(menuNewPerson);
-        menuList.add(menuEditPerson);
-        menuList.add(menuDeletePerson);
-        menuList.add(menuLoadPerson);
-        menuList.add(menuSavePerson);
+        menuList.add(menuNewMap);
+        menuList.add(menuEditMap);
+        menuList.add(menuDeleteMap);
+        menuList.add(menuLoadMap);
+        menuList.add(menuSaveMap);
 
         menuSort.add(menuSortAl);
         menuSort.add(menuSortType);
@@ -118,17 +118,17 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
 
         menuAbout.add(menuAuthor);
 
-        buttonNewPerson.addActionListener(this);
-        buttonEditPerson.addActionListener(this);
-        buttonDeletePerson.addActionListener(this);
-        buttonLoadPerson.addActionListener(this);
-        buttonSavePerson.addActionListener(this);
+        buttonNewMap.addActionListener(this);
+        buttonEditMap.addActionListener(this);
+        buttonDeleteMap.addActionListener(this);
+        buttonLoadMap.addActionListener(this);
+        buttonSaveMap.addActionListener(this);
 
-        menuNewPerson.addActionListener(this);
-        menuEditPerson.addActionListener(this);
-        menuDeletePerson.addActionListener(this);
-        menuLoadPerson.addActionListener(this);
-        menuSavePerson.addActionListener(this);
+        menuNewMap.addActionListener(this);
+        menuEditMap.addActionListener(this);
+        menuDeleteMap.addActionListener(this);
+        menuLoadMap.addActionListener(this);
+        menuSaveMap.addActionListener(this);
         menuSortAl.addActionListener(this);
         menuSortYear.addActionListener(this);
         menuSortType.addActionListener(this);
@@ -146,11 +146,11 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
         panel.add(collectionLabel);
         panel.add(collectionField);
         panel.add(viewMapList);
-        panel.add(buttonNewPerson);
-        panel.add(buttonEditPerson);
-        panel.add(buttonDeletePerson);
-        panel.add(buttonLoadPerson);
-        panel.add(buttonSavePerson);
+        panel.add(buttonNewMap);
+        panel.add(buttonEditMap);
+        panel.add(buttonDeleteMap);
+        panel.add(buttonLoadMap);
+        panel.add(buttonSaveMap);
 
 
         setContentPane(panel);
@@ -165,12 +165,12 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         Object eventSource = event.getSource();
         try {
-            if (eventSource == buttonNewPerson || eventSource == menuNewPerson) {
+            if (eventSource == buttonNewMap || eventSource == menuNewMap) {
                 currentMap = MapWindowDialog.createNewMap(this);
                 currentGroup.add(currentMap);
             }
 
-            if (eventSource == buttonEditPerson || eventSource == menuEditPerson) {
+            if (eventSource == buttonEditMap || eventSource == menuEditMap) {
                 int index = viewMapList.getSelectedIndex();
                 if (index >= 0) {
                     Iterator<Map> iterator = currentGroup.iterator();
@@ -180,7 +180,7 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
                 }
             }
 
-            if (eventSource == buttonDeletePerson || eventSource == menuDeletePerson) {
+            if (eventSource == buttonDeleteMap || eventSource == menuDeleteMap) {
                 int index = viewMapList.getSelectedIndex();
                 if (index >= 0) {
                     Iterator<Map> iterator = currentGroup.iterator();
@@ -190,7 +190,7 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
                 }
             }
 
-            if (eventSource == buttonSavePerson || eventSource == menuSavePerson) {
+            if (eventSource == buttonSaveMap || eventSource == menuSaveMap) {
                 int index = viewMapList.getSelectedIndex();
                 if (index >= 0) {
                     Iterator<Map> iterator = currentGroup.iterator();
@@ -206,7 +206,7 @@ public class MapGroupWindowDialog extends JDialog implements ActionListener {
                 }
             }
 
-            if (eventSource == buttonLoadPerson || eventSource == menuLoadPerson) {
+            if (eventSource == buttonLoadMap || eventSource == menuLoadMap) {
                 JFileChooser chooser = new JFileChooser(".");
                 int returnVal = chooser.showOpenDialog(this);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
